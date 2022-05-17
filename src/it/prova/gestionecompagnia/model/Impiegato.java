@@ -11,8 +11,18 @@ public class Impiegato {
 	private String codiceFiscale;
 	private Date dataNascita;
 	private Date dataAssunzione;
+	private Compagnia compagnia;
 
 	public Impiegato() {
+	}
+
+	public Impiegato(String nome, String cognome, String codiceFiscale, Date dataNascita, Date dataAssunzione) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.codiceFiscale = codiceFiscale;
+		this.dataNascita = dataNascita;
+		this.dataAssunzione = dataAssunzione;
 	}
 
 	public Impiegato(Long id, String nome, String cognome, String codiceFiscale, Date dataNascita,
@@ -32,6 +42,17 @@ public class Impiegato {
 		this.cognome = cognome;
 		this.codiceFiscale = codiceFiscale;
 		this.dataNascita = dataNascita;
+	}
+
+	public Impiegato(String nome, String cognome, String codiceFiscale, Date dataNascita, Date dataAssunzione,
+			Compagnia compagnia) {
+		super();
+		this.nome = nome;
+		this.cognome = cognome;
+		this.codiceFiscale = codiceFiscale;
+		this.dataNascita = dataNascita;
+		this.dataAssunzione = dataAssunzione;
+		this.compagnia = compagnia;
 	}
 
 	public Long getId() {
@@ -80,6 +101,14 @@ public class Impiegato {
 
 	public void setDataAssunzione(Date dataAssunzione) {
 		this.dataAssunzione = dataAssunzione;
+	}
+
+	public Compagnia getCompagnia() {
+		return compagnia;
+	}
+
+	public void setCompagnia(Compagnia compagnia) {
+		this.compagnia = compagnia;
 	}
 
 	@Override
