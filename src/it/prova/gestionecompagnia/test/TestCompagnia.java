@@ -30,5 +30,12 @@ public class TestCompagnia {
 		}
 
 	}
+	
+	public static void testDelete(CompagniaDAO compagniaDAOInstance) {
+		System.out.println("..............testDelete() inizio..............");
+		
+		
+		System.out.println("..............testDelete() fine..............");
+	}
 
 }
