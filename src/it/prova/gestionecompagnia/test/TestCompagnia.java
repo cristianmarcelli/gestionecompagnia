@@ -53,6 +53,9 @@ public class TestCompagnia {
 			// TEST METODO findAllByCodiceFiscaleImpiegatoContiene()###########
 //			testFindAllByCodiceFiscaleImpiegatoContiene(compagniaDAOInstance);
 
+			// TEST METODO delete() e findByEager()##########################
+//			testDeleteCompagnia(compagniaDAOInstance);
+
 //			// METODI IMPIEGATO----------------------------------------------
 			// TEST METODO insert()##########################################
 //			testInsertImpiegato(impiegatoDAOInstance);
@@ -170,6 +173,18 @@ public class TestCompagnia {
 		System.out.println("testFindAllByCodiceFiscaleImpiegatoContiene fine.......");
 	}
 
+	private static void testDeleteCompagnia(CompagniaDAO compagniaDAOInstance) throws Exception {
+		System.out.println("testDeleteCompagnia inizio.......");
+
+		Compagnia compagniaDaEliminare = compagniaDAOInstance.list().get(4);
+		compagniaDaEliminare.setImpiegati(new ArrayList<Impiegato>());
+		compagniaDAOInstance.findByIdEager(compagniaDaEliminare);
+
+		compagniaDAOInstance.delete(compagniaDaEliminare);
+
+		System.out.println("testDeleteCompagnia fine.......");
+	}
+
 	// METODI IMPIEGATO#########################
 	private static void testInsertImpiegato(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
 		System.out.println(".......testInsertImpiegato inizio.............");
@@ -272,8 +287,6 @@ public class TestCompagnia {
 
 	private static void testFindAllErroriAssunzione(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
 		System.out.println("testFindAllErroriAssunzione inizio.......");
-
-		int fatturatoInput = 10000000;
 
 		for (Impiegato impiegatoItem : impiegatoDAOInstance.findAllErroriAssunzione()) {
 			System.out.println(impiegatoItem);
