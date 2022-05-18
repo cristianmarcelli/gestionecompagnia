@@ -69,8 +69,11 @@ public class TestCompagnia {
 //			// TEST METODO delete()########################################
 //			testDeleteImpiegato(impiegatoDAOInstance);
 
-			// TEST METODO findAllByCompagnia()#############################
-			testFindAllByCompagnia(impiegatoDAOInstance);
+//			// TEST METODO findAllByCompagnia()#############################
+//			testFindAllByCompagnia(impiegatoDAOInstance);
+
+			// TEST METODO findAllByCompagniaConFatturatoMaggioreDi()##########
+			testFindAllByCompagniaConFatturatoMaggioreDi(impiegatoDAOInstance);
 
 		} catch (Exception e) {
 		}
@@ -228,15 +231,27 @@ public class TestCompagnia {
 
 	private static void testFindAllByCompagnia(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
 		System.out.println("testFindAllByCompagnia inizio.......");
-		
+
 		Date dataFondazione = new SimpleDateFormat("dd-MM-yyyy").parse("17-05-2022");
-		
+
 		Compagnia compagniaPerProva = new Compagnia(5L, "Pear", 50000000, dataFondazione);
 
 		for (Impiegato impiegatoItem : impiegatoDAOInstance.findAllByCompagnia(compagniaPerProva)) {
 			System.out.println(impiegatoItem);
 		}
 		System.out.println("testFindAllByCompagnia fine.......");
+	}
+
+	private static void testFindAllByCompagniaConFatturatoMaggioreDi(ImpiegatoDAO impiegatoDAOInstance)
+			throws Exception {
+		System.out.println("testFindAllByCompagniaConFatturatoMaggioreDi inizio.......");
+
+		int fatturatoInput = 10000000;
+
+		for (Impiegato impiegatoItem : impiegatoDAOInstance.findAllByCompagniaConFatturatoMaggioreDi(fatturatoInput)) {
+			System.out.println(impiegatoItem);
+		}
+		System.out.println("testFindAllByCompagniaConFatturatoMaggioreDi fine.......");
 	}
 
 }
