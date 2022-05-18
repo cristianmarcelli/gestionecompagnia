@@ -75,8 +75,11 @@ public class TestCompagnia {
 			// TEST METODO findAllByCompagniaConFatturatoMaggioreDi()##########
 //			testFindAllByCompagniaConFatturatoMaggioreDi(impiegatoDAOInstance);
 
-			// test metodo countByDataFondazioneCompagniaGreaterThan()##########
-			testCountByDataFondazioneCompagniaGreaterThan(impiegatoDAOInstance);
+//			// TEST METODO countByDataFondazioneCompagniaGreaterThan()##########
+//			testCountByDataFondazioneCompagniaGreaterThan(impiegatoDAOInstance);
+
+//			//TEST METODO FindAllErroriAssunzione()#########################
+//			testFindAllErroriAssunzione(impiegatoDAOInstance);
 
 		} catch (Exception e) {
 		}
@@ -265,6 +268,17 @@ public class TestCompagnia {
 
 		System.err.println(impiegatoDAOInstance.countByDataFondazioneCompagniaGreaterThan(dataFondazione));
 		System.out.println("testCountByDataFondazioneCompagniaGreaterThan fine.......");
+	}
+
+	private static void testFindAllErroriAssunzione(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
+		System.out.println("testFindAllErroriAssunzione inizio.......");
+
+		int fatturatoInput = 10000000;
+
+		for (Impiegato impiegatoItem : impiegatoDAOInstance.findAllErroriAssunzione()) {
+			System.out.println(impiegatoItem);
+		}
+		System.out.println("testFindAllErroriAssunzione fine.......");
 	}
 
 }
