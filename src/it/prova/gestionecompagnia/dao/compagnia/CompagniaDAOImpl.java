@@ -91,7 +91,7 @@ public class CompagniaDAOImpl extends AbstractMySQLDAO implements CompagniaDAO {
 			ps.setString(1, compagniaInput.getRagioneSociale());
 			ps.setInt(2, compagniaInput.getFatturatoAnnuo());
 			ps.setDate(3, new java.sql.Date(compagniaInput.getDataFondazione().getTime()));
-			
+
 			ps.setLong(4, compagniaInput.getId());
 
 			result = ps.executeUpdate();
@@ -237,9 +237,9 @@ public class CompagniaDAOImpl extends AbstractMySQLDAO implements CompagniaDAO {
 
 		Compagnia compagniaTemp = null;
 		try (PreparedStatement ps = connection
-				.prepareStatement("select * from compagnia c inner join impiegato i where i.dataassunzione > ?;")) {
+				.prepareStatement("select distinct * from compagnia c inner join impiegato i on c.id = i.compagnia_id where i.dataassunzione > ?;")) {
 
-			ps.setDate(1, (java.sql.Date) dataAssunzioneInput);
+			ps.setDate(1, new java.sql.Date(dataAssunzioneInput.getTime()));
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					compagniaTemp = new Compagnia();
@@ -305,7 +305,7 @@ public class CompagniaDAOImpl extends AbstractMySQLDAO implements CompagniaDAO {
 
 		Compagnia compagniaTemp = null;
 		try (PreparedStatement ps = connection
-				.prepareStatement("select * from compagnia c inner join impiegato i where i.codicefiscale like ?;")) {
+				.prepareStatement("select * from compagnia c inner join impiegato i on c.id = i.compagnia_id where i.codicefiscale like ?;")) {
 
 			ps.setString(1, '%' + codiceFiscaleContieneInput + '%');
 			try (ResultSet rs = ps.executeQuery()) {

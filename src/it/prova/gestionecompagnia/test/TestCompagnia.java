@@ -2,6 +2,7 @@ package it.prova.gestionecompagnia.test;
 
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -43,6 +44,19 @@ public class TestCompagnia {
 //			// TEST METODO findByExample()###################################
 //			testFindByExampleImpiegato(compagniaDAOInstance);
 
+//			// TEST METODO findAllByDataAssunzioneMaggioreDi()#################
+//			testFindAllByDataAssunzioneMaggioreDi(compagniaDAOInstance);
+
+//			 //TEST METODO findAllByRagioneSocialeContiene()############
+//			testFindAllByRagioneSocialeContiene(compagniaDAOInstance);
+
+			//TEST METODO findAllByCodiceFiscaleImpiegatoContiene()###########
+			testFindAllByCodiceFiscaleImpiegatoContiene(compagniaDAOInstance);
+			
+			
+			
+			
+			
 //			// METODI IMPIEGATO----------------------------------------------
 			// TEST METODO insert()##########################################
 //			testInsertImpiegato(impiegatoDAOInstance);
@@ -55,9 +69,9 @@ public class TestCompagnia {
 
 			// TEST METODO update()##########################################
 //			testUpdateImpiegato(impiegatoDAOInstance);
-			
-			// TEST METODO delete()########################################
-			testDeleteImpiegato(impiegatoDAOInstance);
+
+//			// TEST METODO delete()########################################
+//			testDeleteImpiegato(impiegatoDAOInstance);
 
 		} catch (Exception e) {
 		}
@@ -111,6 +125,41 @@ public class TestCompagnia {
 			System.out.println(compagniaItem);
 		}
 		System.out.println("testFindByExample fine.......");
+	}
+
+	private static void testFindAllByDataAssunzioneMaggioreDi(CompagniaDAO compagniaDAOInstance) throws Exception {
+		System.out.println("testFindAllByDataAssunzioneMaggioreDi inizio.......");
+
+		Date dataPerRicerca = new SimpleDateFormat("dd-MM-yyyy").parse("01-02-2019");
+
+		for (Compagnia compagniaItem : compagniaDAOInstance.findAllByDataAssunzioneMaggioreDi(dataPerRicerca)) {
+			System.out.println(compagniaItem);
+		}
+		System.out.println("testFindAllByDataAssunzioneMaggioreDi fine.......");
+	}
+
+	private static void testFindAllByRagioneSocialeContiene(CompagniaDAO compagniaDAOInstance) throws Exception {
+		System.out.println("testFindAllByDataAssunzioneMaggioreDi inizio.......");
+
+		String ragioneSocialeInput = "c";
+
+		for (Compagnia compagniaItem : compagniaDAOInstance.findAllByRagioneSocialeContiene(ragioneSocialeInput)) {
+			System.out.println(compagniaItem);
+		}
+		System.out.println("testFindAllByDataAssunzioneMaggioreDi fine.......");
+	}
+
+	private static void testFindAllByCodiceFiscaleImpiegatoContiene(CompagniaDAO compagniaDAOInstance)
+			throws Exception {
+		System.out.println("testFindAllByCodiceFiscaleImpiegatoContiene inizio.......");
+
+		String codiceFiscaleInput = "F";
+
+		for (Compagnia compagniaItem : compagniaDAOInstance
+				.findAllByCodiceFiscaleImpiegatoContiene(codiceFiscaleInput)) {
+			System.out.println(compagniaItem);
+		}
+		System.out.println("testFindAllByCodiceFiscaleImpiegatoContiene fine.......");
 	}
 
 	// METODI IMPIEGATO#########################
@@ -171,8 +220,8 @@ public class TestCompagnia {
 
 		Impiegato impiegatoDaEliminare = impiegatoDAOInstance.list().get(3);
 
-		int quantiNegoziIEliminati = impiegatoDAOInstance.delete(impiegatoDaEliminare);
-		if (quantiNegoziIEliminati < 1)
+		int quantiImpiegatiIEliminati = impiegatoDAOInstance.delete(impiegatoDaEliminare);
+		if (quantiImpiegatiIEliminati < 1)
 			throw new RuntimeException("testDeleteImpiegato : FAILED");
 
 		System.out.println(".......testInsertImpiegato fine: PASSED.............");
