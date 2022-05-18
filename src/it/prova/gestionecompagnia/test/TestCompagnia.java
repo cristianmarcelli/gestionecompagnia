@@ -54,7 +54,10 @@ public class TestCompagnia {
 //			testGetImpiegato(impiegatoDAOInstance);
 
 			// TEST METODO update()##########################################
-			testUpdateImpiegato(impiegatoDAOInstance);
+//			testUpdateImpiegato(impiegatoDAOInstance);
+			
+			// TEST METODO delete()########################################
+			testDeleteImpiegato(impiegatoDAOInstance);
 
 		} catch (Exception e) {
 		}
@@ -98,7 +101,7 @@ public class TestCompagnia {
 		System.out.println(".......testUpdateCompagnia fine.............");
 	}
 
-	public static void testFindByExampleImpiegato(CompagniaDAO compagniaDAOInstance) throws Exception {
+	private static void testFindByExampleImpiegato(CompagniaDAO compagniaDAOInstance) throws Exception {
 		System.out.println("testFindByExample inizio.......");
 
 		Compagnia compagniaDaTrovare = new Compagnia();
@@ -151,7 +154,7 @@ public class TestCompagnia {
 		System.out.println(".......testUpdateImpiegato fine.............");
 	}
 
-	public static void testFindByExampleImpiegato(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
+	private static void testFindByExampleImpiegato(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
 		System.out.println("testFindByExampleImpiegato inizio.......");
 
 		Impiegato impiegatoDaTrovare = new Impiegato();
@@ -162,4 +165,17 @@ public class TestCompagnia {
 		}
 		System.out.println("testFindByExampleImpiegato fine.......");
 	}
+
+	private static void testDeleteImpiegato(ImpiegatoDAO impiegatoDAOInstance) throws Exception {
+		System.out.println(".......testInsertImpiegato inizio.............");
+
+		Impiegato impiegatoDaEliminare = impiegatoDAOInstance.list().get(3);
+
+		int quantiNegoziIEliminati = impiegatoDAOInstance.delete(impiegatoDaEliminare);
+		if (quantiNegoziIEliminati < 1)
+			throw new RuntimeException("testDeleteImpiegato : FAILED");
+
+		System.out.println(".......testInsertImpiegato fine: PASSED.............");
+	}
+
 }

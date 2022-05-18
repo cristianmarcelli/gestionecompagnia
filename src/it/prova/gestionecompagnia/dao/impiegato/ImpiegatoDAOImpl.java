@@ -249,7 +249,6 @@ public class ImpiegatoDAOImpl extends AbstractMySQLDAO implements ImpiegatoDAO {
 			throw new Exception("Valore di input non ammesso.");
 
 		ArrayList<Impiegato> result = new ArrayList<Impiegato>();
-		int contatore = 0;
 		Impiegato impiegatoTemp = null;
 		try (PreparedStatement ps = connection.prepareStatement(
 				"select count(*) from impiegato i inner join compagnia c on c.id = i.compagnia_id where c.datafondazione > ?")) {
