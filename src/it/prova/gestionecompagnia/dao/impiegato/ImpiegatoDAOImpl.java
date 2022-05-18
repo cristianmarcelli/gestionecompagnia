@@ -216,9 +216,9 @@ public class ImpiegatoDAOImpl extends AbstractMySQLDAO implements ImpiegatoDAO {
 		ArrayList<Impiegato> result = new ArrayList<Impiegato>();
 		Impiegato impiegatoTemp = null;
 		try (PreparedStatement ps = connection.prepareStatement(
-				"select * from impiegato i inner join compagnia c on c.id = i.compagnia_id where c.id>?")) {
+				"select * from impiegato i inner join compagnia c on c.id = i.compagnia_id where c.ragionesociale=?")) {
 
-			ps.setLong(1, compagniaInput.getId());
+			ps.setString(1, compagniaInput.getRagioneSociale());
 			try (ResultSet rs = ps.executeQuery()) {
 				while (rs.next()) {
 					impiegatoTemp = new Impiegato();
@@ -227,6 +227,7 @@ public class ImpiegatoDAOImpl extends AbstractMySQLDAO implements ImpiegatoDAO {
 					impiegatoTemp.setCodiceFiscale(rs.getString("codicefiscale"));
 					impiegatoTemp.setDataNascita(rs.getDate("datanascita"));
 					impiegatoTemp.setDataAssunzione(rs.getDate("dataassunzione"));
+					impiegatoTemp.setId(rs.getLong("id"));
 
 					result.add(impiegatoTemp);
 				}
