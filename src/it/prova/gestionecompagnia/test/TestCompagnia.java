@@ -73,7 +73,10 @@ public class TestCompagnia {
 //			testFindAllByCompagnia(impiegatoDAOInstance);
 
 			// TEST METODO findAllByCompagniaConFatturatoMaggioreDi()##########
-			testFindAllByCompagniaConFatturatoMaggioreDi(impiegatoDAOInstance);
+//			testFindAllByCompagniaConFatturatoMaggioreDi(impiegatoDAOInstance);
+
+			// test metodo countByDataFondazioneCompagniaGreaterThan()##########
+			testCountByDataFondazioneCompagniaGreaterThan(impiegatoDAOInstance);
 
 		} catch (Exception e) {
 		}
@@ -252,6 +255,16 @@ public class TestCompagnia {
 			System.out.println(impiegatoItem);
 		}
 		System.out.println("testFindAllByCompagniaConFatturatoMaggioreDi fine.......");
+	}
+
+	private static void testCountByDataFondazioneCompagniaGreaterThan(ImpiegatoDAO impiegatoDAOInstance)
+			throws Exception {
+		System.out.println("testCountByDataFondazioneCompagniaGreaterThan inizio.......");
+
+		Date dataFondazione = new SimpleDateFormat("dd-MM-yyyy").parse("17-05-1970");
+
+		System.err.println(impiegatoDAOInstance.countByDataFondazioneCompagniaGreaterThan(dataFondazione));
+		System.out.println("testCountByDataFondazioneCompagniaGreaterThan fine.......");
 	}
 
 }
